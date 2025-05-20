@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cuidadores</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-input [(ngModel)]="cuidador.nome" placeholder="Nome"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input [(ngModel)]="cuidador.telefone" type="tel" placeholder="Telefone"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input [(ngModel)]="cuidador.experiencia" type="number" placeholder="Experiência (anos)"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input [(ngModel)]="cuidador.especialidades" placeholder="Especialidades"></ion-input>
+  </ion-item>
+  <ion-button expand="block" (click)="adicionarOuAtualizarCuidador()">
+    {{ cuidador.id ? 'Atualizar' : 'Adicionar' }} Cuidador
+  </ion-button>
+
+  <ion-list>
+    <ion-item *ngFor="let c of listaCuidadores">
+      <ion-label>
+        <h2>{{ c.nome }}</h2>
+        <p>Telefone: {{ c.telefone }} | Experiência: {{ c.experiencia }} anos</p>
+        <p>Especialidades: {{ c.especialidades }}</p>
+      </ion-label>
+      <ion-button fill="clear" slot="end" (click)="editarCuidador(c)">Editar</ion-button>
+      <ion-button fill="clear" color="danger" slot="end" (click)="excluirCuidador(c.id)">Excluir</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Pets</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-input [(ngModel)]="pet.nome" placeholder="Nome"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input [(ngModel)]="pet.especie" placeholder="Espécie"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input [(ngModel)]="pet.raca" placeholder="Raça"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input [(ngModel)]="pet.idade" type="number" placeholder="Idade"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-textarea [(ngModel)]="pet.observacoes" placeholder="Observações"></ion-textarea>
+  </ion-item>
+  <ion-button expand="block" (click)="adicionarOuAtualizarPet()">
+    {{ pet.id ? 'Atualizar' : 'Adicionar' }} Pet
+  </ion-button>
+
+  <ion-list>
+    <ion-item *ngFor="let p of listaPets">
+      <ion-label>
+        <h2>{{ p.nome }} ({{ p.especie }})</h2>
+        <p>Raça: {{ p.raca }} | Idade: {{ p.idade }}</p>
+        <p>{{ p.observacoes }}</p>
+      </ion-label>
+      <ion-button fill="clear" slot="end" (click)="editarPet(p)">Editar</ion-button>
+      <ion-button fill="clear" color="danger" slot="end" (click)="excluirPet(p.id)">Excluir</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
